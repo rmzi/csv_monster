@@ -23,6 +23,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 @SpringBootApplication
 public class SampleSimpleApplication implements CommandLineRunner {
 
@@ -42,7 +51,23 @@ public class SampleSimpleApplication implements CommandLineRunner {
 	}
 
 	public static void main(String[] args) throws Exception {
+		Workbook wb = new XSSFWorkbook(new FileInputStream("workbook.xlsx"));
+      for (int i = 0; i < wb.getNumberOfSheets(); i++) {
+          Sheet sheet = wb.getSheetAt(i);
+          System.out.println(wb.getSheetName(i));
+          for (Row row : sheet) {
+              System.out.println("rownum: " + row.getRowNum());
+              for (Cell cell : row) {
+                  System.out.println(cell);
+              }
+          }
+      }
+      wb.close();
+
+
 		SpringApplication.run(SampleSimpleApplication.class, args);
 	}
+
+
 
 }

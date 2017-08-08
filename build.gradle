@@ -36,5 +36,11 @@ repositories {
 dependencies {
 	compile("org.springframework.boot:spring-boot-starter")
 	compile("org.hibernate:hibernate-validator")
+
+	// XLSX Dependencies
+
+	// https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
+	compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.16'
+
 	testCompile("org.springframework.boot:spring-boot-starter-test")
 }
